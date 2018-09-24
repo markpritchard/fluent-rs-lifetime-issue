@@ -4,4 +4,5 @@ version = "0.1.0"
 authors = ["Kirill Lastovirya <kirill.lastovirya@jobseeker.com.au>"]
 
 [dependencies]
-fluent = "0.4.1"
+# fluent = "0.4.1"
+fluent = { git = "https://github.com/markpritchard/fluent-rs", branch = "lifetime-fix" }
