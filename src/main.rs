@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use std::borrow::Cow;
 
 extern crate fluent;
 use fluent::bundle::FluentBundle;
@@ -9,7 +8,7 @@ struct LocalesRegistry<'a> {
 }
 
 impl<'a> LocalesRegistry<'a> {
-    pub fn load_from_folder(folder_path: &'a str) -> LocalesRegistry {
+    pub fn load_from_folder(folder_path: &str) -> LocalesRegistry {
         let mut locales = HashMap::new();
 
         let mut bundle = FluentBundle::new(&[folder_path]);
@@ -19,16 +18,17 @@ impl<'a> LocalesRegistry<'a> {
         LocalesRegistry { locales: locales }
     }
 
-    pub fn names(&'a self) -> Vec<Cow<'a, str>> {
-        self.locales.keys().map(|k| k.into()).collect::<Vec<Cow<'a, str>>>()
+    pub fn names(&self) -> Vec<&str> {
+        self.locales.keys().map(|k| k.as_ref()).collect::<Vec<&str>>()
     }
 
-    pub fn translate(&'a self, locale: &str, key: &str) -> String {
+    pub fn translate(&self, locale: &str, key: &str) -> String {
       let bundle = self.locales.get(locale).unwrap();
       let (value, _errors) = bundle.format(key, None).unwrap();
       value
     }
 }
+
 fn main() {
     let registry = LocalesRegistry::load_from_folder("whatever");
     println!("Have locales: {:?}", registry.names());

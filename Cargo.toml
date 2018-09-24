@@ -1,0 +1,8 @@
+[package]
+name = "fluent-rs-lifetime-issue"
+version = "0.1.0"
+authors = ["Mark Pritchard <mpritcha@gmail.com>"]
+
+[dependencies]
+# fluent = "0.4.1"
+fluent = { git = "https://github.com/markpritchard/fluent-rs", branch = "lifetime-fix" }
