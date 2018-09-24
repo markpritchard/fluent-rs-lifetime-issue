@@ -1,0 +1,7 @@
+[package]
+name = "fluent-rs-example"
+version = "0.1.0"
+authors = ["Kirill Lastovirya <kirill.lastovirya@jobseeker.com.au>"]
+
+[dependencies]
+fluent = "0.4.1"
